@@ -53,7 +53,9 @@ def test_aliens(test_name, tree_in, tree_out):
     for nl, line in enumerate(tree_out):
         for nc, c in enumerate(line):
             if c not in ELEMENTS:
-                LOG.write("FAILED: %s | alien (%s) at y: %d, x: %d\n"%(test_name, c, ln, nc))
+                log = "FAILED: %s | alien (%s) at y: %d, x: %d\n"%(test_name, c, ln, nc)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     return SUCCESS(test_name)
@@ -63,7 +65,9 @@ def test_desert(test_name, tree_in, tree_out):
     green_count_out = count_elements(tree_out, TREE_ELEMENTS)
 
     if (green_count_in == 0 and green_count_out != 0):
-        LOG.write("FAILED: %s | Green count not equal tree_in: %d, tree_out: %d\n"%(test_name, green_count_in, green_count_out))
+        log = "FAILED: %s | Green count not equal tree_in: %d, tree_out: %d\n"%(test_name, green_count_in, green_count_out)
+        LOG.write(log)
+        sys.stderr.write(log)
         return FAILED(test_name)
 
     return SUCCESS(test_name)
@@ -82,7 +86,9 @@ def test_light(test_name, tree_in, tree_out):
     for y in range(len(tree_out)):
         for x in range(len(tree_out[0])):
             if (tree_out[y][x] in "fFtT" and not light[y][x]):
-                LOG.write("FAILED: %s | light not good at x: %d, y: %d\n"%(test_name, x, y))
+                log = "FAILED: %s | light not good at x: %d, y: %d\n"%(test_name, x, y)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     return SUCCESS(test_name)
@@ -92,10 +98,14 @@ def test_root(test_name, tree_in, tree_out):
         for x in range(len(tree_out[0])):
             try:
                 if (tree_out[y][x] is "r" and tree_in[y][x] not in "r-"):
-                    LOG.write("FAILED: %s | root at x: %d, y: %d\n"%(test_name, x, y))
+                    log = "FAILED: %s | root at x: %d, y: %d\n"%(test_name, x, y)
+                    LOG.write(log)
+                    sys.stderr.write(log)
                     return FAILED(test_name)
             except IndexError:
-                LOG.write("FAILED: %s | root IndexError\n"%(test_name))
+                log = "FAILED: %s | root IndexError\n"%(test_name)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     return SUCCESS(test_name)
@@ -104,7 +114,9 @@ def test_old_trunk(test_name, tree_in, tree_out):
     for y in range(len(tree_in)):
         for x in range(len(tree_in[0])):
             if (tree_in[y][x] is "T" and tree_out[y][x] is not "T" ):
-                LOG.write("FAILED: %s | trunk at x: %d, y: %d\n"%(test_name, x, y))
+                log = "FAILED: %s | trunk at x: %d, y: %d\n"%(test_name, x, y)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     return SUCCESS(test_name)
@@ -113,7 +125,9 @@ def test_young_trunk(test_name, tree_in, tree_out):
     for y in range(len(tree_in)):
         for x in range(len(tree_in[0])):
             if (tree_in[y][x] is "t" and tree_out[y][x] not in "tT" ):
-                LOG.write("FAILED: %s | young trunk at x: %d, y: %d\n"%(test_name, x, y))
+                log = "FAILED: %s | young trunk at x: %d, y: %d\n"%(test_name, x, y)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     return SUCCESS(test_name)
@@ -123,30 +137,42 @@ def test_ground_solidity(test_name, tree_in, tree_out):
         for x in range(len(tree_in[0])):
             try:
                 if (tree_in[y][x] is "-" and tree_out[y][x] not in "-r" ):
-                    LOG.write("FAILED: %s | ground solidity (tree_in for roots) at x: %d, y: %d\n"%(test_name, x, y))
+                    log = "FAILED: %s | ground solidity (tree_in for roots) at x: %d, y: %d\n"%(test_name, x, y)
+                    LOG.write(log)
+                    sys.stderr.write(log)
                     return FAILED(test_name)
             except IndexError:
-                LOG.write("FAILED: %s | ground solidity (tree_in for roots) IndexError\n"%(test_name))
+                log = "FAILED: %s | ground solidity (tree_in for roots) IndexError\n"%(test_name)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     for y in range(len(tree_in)):
         for x in range(len(tree_in[0])):
             try:
                 if (tree_in[y][x] is "o" and tree_out[y][x] is not "o" ):
-                    LOG.write("FAILED: %s | ground solidity (tree_in for rocks) at x: %d, y: %d\n"%(test_name, x, y))
+                    log = "FAILED: %s | ground solidity (tree_in for rocks) at x: %d, y: %d\n"%(test_name, x, y)
+                    LOG.write(log)
+                    sys.stderr.write(log)
                     return FAILED(test_name)
             except IndexError:
-                LOG.write("FAILED: %s | ground solidity (tree_in for rocks) IndexError\n"%(test_name))
+                log = "FAILED: %s | ground solidity (tree_in for rocks) IndexError\n"%(test_name)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     for y in range(len(tree_out)):
         for x in range(len(tree_out[0])):
             try:
                 if (tree_out[y][x] in "o-" and tree_out[y][x] is not tree_in[y][x] ):
-                    LOG.write("FAILED: %s | ground solidity (tree_out) at x: %d, y: %d\n"%(test_name, x, y))
+                    log = "FAILED: %s | ground solidity (tree_out) at x: %d, y: %d\n"%(test_name, x, y)
+                    LOG.write(log)
+                    sys.stderr.write(log)
                     return FAILED(test_name)
             except IndexError:
-                LOG.write("FAILED: %s | ground solidity (tree_out) IndexError\n"%(test_name))
+                log = "FAILED: %s | ground solidity (tree_out) IndexError\n"%(test_name)
+                LOG.write(log)
+                sys.stderr.write(log)
                 return FAILED(test_name)
 
     return SUCCESS(test_name)
