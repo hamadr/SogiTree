@@ -59,6 +59,8 @@ note:
 	@echo "ERREURS = " $$(cat $(NOTE) | sort | uniq | grep "FAILED" | wc -l)
 	@echo "TESTS OK= " $$(cat $(NOTE) | sort | uniq | grep "SUCCESS" | wc -l)
 
-	
-
-
+generate:
+	./scripts/terraform.py > new_world.tree
+	cat new_world.tree | ./SogiTree > new_world.processed
+	./tree2png new_world.processed new_world.png
+	eog new_world.png
