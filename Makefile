@@ -7,7 +7,7 @@ RST=results
 NOTE=$(RST)/test_result
 TESTER=./test/verify.py
 
-SOGITREE=./SogiTree.py
+SOGITREE=./SogiTree
 TREE2PNG=./tree2png
 
 .PRECIOUS : %.ppm
