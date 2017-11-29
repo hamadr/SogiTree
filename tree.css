@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  background-color: #00bfb9;
+  background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png");
+}
+
+.world {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+}
+.pixel {
+  display: block;
+}
+
+.leaf {
+  background-color: #4e8500;
+  background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png");
+}
+.foliage {
+  background-color: #417000;
+  background-image: url("https://www.transparenttextures.com/patterns/wild-flowers.png");
+}
+.trunk, .branch {
+  background-image: url("https://www.transparenttextures.com/patterns/shley-tree-2.png");
+}
+.trunk {
+  background-color: #543700;
+}
+.branch {
+  background-color: #7a4f00;
+}
+.rock {
+  background-image: url("https://www.transparenttextures.com/patterns/gravel.png");
+}
+.rock.light {
+  background-color: #cce1ed;
+}
+.rock.dark {
+  background-color: #5a7585;
+}

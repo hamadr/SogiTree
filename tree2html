@@ -1,0 +1,17 @@
+#! /bin/bash
+
+TREE_FILENAME=$1
+HTML_FILENAME=$2
+CSS_FILENAME=$3
+
+if [ $# -ne 3 ]
+then
+	echo "usage : $0 tree_file html_file css_file"
+	exit 42
+fi
+
+echo $TREE_FILENAME
+echo $HTML_FILENAME
+echo $CSS_FILENAME
+
+scripts/tree2html.sh $TREE_FILENAME $HTML_FILENAME $CSS_FILENAME
