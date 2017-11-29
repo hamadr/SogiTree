@@ -9,9 +9,10 @@ TESTER=./test/verify.py
 
 SOGITREE=./SogiTree
 TREE2PNG=./tree2png
+TREE2HTML=./tree2html
 
 .PRECIOUS : %.ppm
-.PHONY : all note clean view
+.PHONY : all note clean view web
 
 all : $(TARGET)
 
@@ -42,6 +43,9 @@ $(RST)/%.mp4 : datas/%.tree
 	done ;\
 	ffmpeg -r 10 -i $$DIR/%0$${#I}d.tree.png -r 10 $@ ;\
 	convert -delay 10 -loop 0 $$DIR/*.png $$DIR.gif
+
+$(RST)/%.html : $(DATA)/%.tree
+	$(TREE2HTML) $< $@ tree.css
 
 README.pdf : README.md
 	pandoc -t beamer $< --highlight-style=zenburn -o $@
